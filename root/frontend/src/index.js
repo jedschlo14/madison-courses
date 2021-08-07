@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Header } from './components/Header';
+import { CourseTable } from './components/CourseTable';
+import { Search } from './components/Search';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
+    <div>
+      <Header />
+      <div style={{display: "flex"}}>
+        <Search />
+        <CourseTable />
+      </div>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
