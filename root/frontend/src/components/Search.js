@@ -7,7 +7,7 @@ import './styles.css';
 
 export function Search() {
   return (
-    <Paper elevation={5} className="section">
+    <Paper elevation={5} className="section" style={{ borderRadius: "20px"}}>
         <Autocomplete
         id="films"
         options={top100Films}

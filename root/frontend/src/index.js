@@ -8,7 +8,7 @@ import { Search } from './components/Search';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div>
+    <div style={{ backgroundColor: "#f7f7f7"}}>
       <Header />
       <div style={{display: "flex"}}>
         <Search />
