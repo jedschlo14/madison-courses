@@ -102,7 +102,7 @@ export function CourseTable() {
   };
 
   return (
-    <Paper elevation={5} className="section">
+    <Paper elevation={5} className="section" style={{ borderRadius: "20px"}}>
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="course table" className={classes.table}>
           <TableHead>

@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 
 export function Header() {
     return (
-        <Paper elevation={5}>
+        <Paper elevation={24}>
             <body>
                 <nav className="navbar">
                     <a className="navbar-brand mx-auto" href="/">

@@ -12,11 +12,11 @@ span {
     font-weight: bolder;
 }
 
-.div {
+div {
     background-color: #f7f7f7;
 }
 
-section {
+.section {
     border-radius: 20px;
     margin-top: 2.5%;
     margin-left: 2.5%;
