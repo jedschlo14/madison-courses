@@ -17,3 +17,10 @@ span {
     margin-left: 2.5%;
     margin-right: 2.5%;
   }
+
+.button {
+    width: 85%;
+    margin: auto;
+    background: #0479a8;
+    color: #494949;
+}
