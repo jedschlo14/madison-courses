@@ -8,9 +8,9 @@ import { Search } from './components/Search';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div style={{ backgroundColor: "#f7f7f7"}}>
+    <div style={{ backgroundColor: "#f7f7f7", height: "100vh"}}>
       <Header />
-      <div style={{display: "flex"}}>
+      <div style={{display: "flex", justifyContent: "center"}}>
         <Search />
         <CourseTable />
       </div>

@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -26,24 +26,71 @@ const useStyles = makeStyles({
     width: '90%',
     height: '10%',
     margin: 'auto',
-  }
+  },
+  slider: {
+    width: 300,
+  },
 });
 
 export function Search() {
   const classes = useStyles();
 
+  const [value, setValue] = useState({
+    keywords: '',
+    minCredits: '',
+    maxCredits: '',
+  })
+
+  const [creditRange, setCreditRange] = useState([44, 0])
+
+  function updateCreditRange() {
+    setCreditRange([(isNaN(value.maxCredits)) ? 44 : value.maxCredits, (isNaN(value.minCredits)) ? 0 : value.minCredits])
+  }
+
+  function handleChange(event) { 
+    const {id, value} = event.target;
+
+    updateCreditRange();
+
+    setValue(prevInput => {
+      return {
+        ...prevInput,
+        [id]: value
+      }
+    })
+  }
+
+  function handleClick(event) {
+    event.preventDefault();
+    console.log(value);
+  }
+
   return (
-    <Paper elevation={5} className="section" style={{ borderRadius: "25px", background: "#f7f7f7", height: 325 }}>
+    <Paper elevation={5} className="section" style={{ borderRadius: "25px", background: "#f7f7f7", height: 300, width: 300 }}>
         <form noValidate autoComplete="off">
           <Container>
-            <Button classes={{ root: classes.root }} className="button" variant="contained" disableElevation>Filter Results</Button>
+            <Button
+            onClick={handleClick}
+            classes={{ root: classes.root }}
+            className="button"
+            variant="contained"
+            disableElevation
+            >Filter Results</Button>
           </Container>
           <Container>
-            <TextField className={ classes.textField } id="outlined-basic" label="Keywords" variant="outlined" />
+            <TextField
+            onChange={handleChange}
+            className={ classes.textField }
+            id="keywords"
+            value={value.keywords}
+            label="Keywords"
+            variant="outlined"
+            />
           </Container>
           <Container>
             <Autocomplete
-            id="films"
+            id="fields"
+            onChange={handleChange}
             options={top100Films}
             getOptionLabel={(option) => option.title}
             className={ classes.textField }
@@ -51,8 +98,27 @@ export function Search() {
             />
           </Container>
           <Container>
-            <TextField className={ classes.textField } style={{ width: '42.5%', marginRight: '2.5%' }} id="outlined-basic" label="Min Credits" variant="outlined" />
-            <TextField className={ classes.textField } style={{ width: '42.5%', marginLeft: '2.5%' }} id="outlined-basic" label="Max Credits" variant="outlined" />
+            <TextField
+            onChange={handleChange}
+            type="number"
+            InputProps={{ inputProps:{ min: 0, max: creditRange[0] } }}
+            className={ classes.textField }
+            style={{ width: '42.5%', marginRight: '2.5%' }}
+            id="minCredits"
+            value={value.minCredits}
+            label="Min Credits"
+            variant="outlined"
+            />
+            <TextField
+            onChange={handleChange}
+            type="number"
+            InputProps={{ inputProps: { min: creditRange[1], max: 44 } }}
+            className={ classes.textField }
+            style={{ width: '42.5%', marginLeft: '2.5%' }}
+            id="maxCredits"
+            value={value.maxCredits}
+            label="Max Credits"
+            variant="outlined" />
           </Container>
         </form>
     </Paper>
