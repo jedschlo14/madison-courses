@@ -79,11 +79,11 @@ export function Search() {
           </Container>
           <Container>
             <TextField
-            onChange={handleChange}
-            className={ classes.textField }
             id="keywords"
             value={value.keywords}
             label="Keywords"
+            onChange={handleChange}
+            className={ classes.textField }
             variant="outlined"
             />
           </Container>
@@ -99,25 +99,25 @@ export function Search() {
           </Container>
           <Container>
             <TextField
-            onChange={handleChange}
-            type="number"
-            InputProps={{ inputProps:{ min: 0, max: creditRange[0] } }}
-            className={ classes.textField }
-            style={{ width: '42.5%', marginRight: '2.5%' }}
             id="minCredits"
             value={value.minCredits}
             label="Min Credits"
+            onChange={handleChange}
+            InputProps={{ inputProps:{ min: 0, max: creditRange[0] } }}
+            className={ classes.textField }
+            style={{ width: '42.5%', marginRight: '2.5%' }}
+            type="number"
             variant="outlined"
             />
             <TextField
-            onChange={handleChange}
-            type="number"
-            InputProps={{ inputProps: { min: creditRange[1], max: 44 } }}
-            className={ classes.textField }
-            style={{ width: '42.5%', marginLeft: '2.5%' }}
             id="maxCredits"
             value={value.maxCredits}
             label="Max Credits"
+            onChange={handleChange}
+            InputProps={{ inputProps: { min: creditRange[1], max: 44 } }}
+            className={ classes.textField }
+            style={{ width: '42.5%', marginLeft: '2.5%' }}
+            type="number"
             variant="outlined" />
           </Container>
         </form>
