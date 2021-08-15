@@ -135,7 +135,7 @@ for first in range(1, 22):
                     pass
 
             # add data to course collection
-            courseCollection.insert_one({"_id": course_id, "fields": fields, "number": number, "name": name, "creditMin": creditMin, "creditMax": creditMax, "description": description})
+            courseCollection.insert_one({"_id": course_id, "fields": fields, "number": int(number), "name": name, "creditMin": int(creditMin), "creditMax": int(creditMax), "description": description})
             course_id += 1
 
 # close driver and application
