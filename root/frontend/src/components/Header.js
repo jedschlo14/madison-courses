@@ -7,7 +7,7 @@ export function Header() {
         <Paper elevation={5}>
             <div>
                 <nav className="navbar">
-                    <a className="navbar-brand mx-auto" href="/">
+                    <a className="navbar-brand mx-auto" href="/courses">
                         <span>UW-Madison Course Search</span>
                     </a>
                 </nav>

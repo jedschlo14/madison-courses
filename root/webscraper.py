@@ -97,6 +97,7 @@ for first in range(1, 22):
             ending = title[-1][::-1].strip().split(" ", 1)
             fields.append(ending[1][::-1].strip())
             fields.sort()
+            fieldDisp = fields[0]
 
             # course number
             number = ending[0][::-1]
@@ -135,7 +136,7 @@ for first in range(1, 22):
                     pass
 
             # add data to course collection
-            courseCollection.insert_one({"_id": course_id, "fields": fields, "number": int(number), "name": name, "creditMin": int(creditMin), "creditMax": int(creditMax), "description": description})
+            courseCollection.insert_one({"_id": course_id, "fieldDisp": fieldDisp, "fields": fields, "number": int(number), "name": name, "creditMin": int(creditMin), "creditMax": int(creditMax), "description": description})
             course_id += 1
 
 # close driver and application

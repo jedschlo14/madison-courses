@@ -4,7 +4,6 @@ import './index.css';
 import { Header } from './components/Header';
 import { CourseTable } from './components/CourseTable';
 import { Search } from './components/Search';
-import Courses from './components/showCourse';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +13,6 @@ ReactDOM.render(
         <Search />
         <CourseTable />
       </div>
-      <Courses />
     </div>
   </React.StrictMode>,
   document.getElementById('root')
