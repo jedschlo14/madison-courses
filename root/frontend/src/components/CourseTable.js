@@ -9,7 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios';
-import { useNavigate } from "@reach/router"
 import './styles.css';
 
 const columns = [
@@ -69,6 +68,7 @@ const useStyles = makeStyles({
 
 export function CourseTable() {
   const classes = useStyles();
+  const [isLoading, setLoading] = useState(true);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -86,10 +86,13 @@ export function CourseTable() {
   useEffect(() => {
       axios.get('http://localhost:5000/courses').then( (allCourses) => {
           setCourseList(allCourses.data);
+          setLoading(false);
       } )
   }, [])
 
-  const navigate = useNavigate();
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <Paper elevation={5} className="section" style={{ borderRadius: "20px"}}>
@@ -112,7 +115,7 @@ export function CourseTable() {
           <TableBody className={classes.tableBody}>
             {courseList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={ () => navigate('/courses', { replace: true })}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={event =>  window.location.href=("courseId=" + row._id)}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
