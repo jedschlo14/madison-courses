@@ -25,7 +25,7 @@ export function Header() {
                     <a className="navbar-brand mx-auto" href="/">
                         <span>UW-Madison Course Search</span>
                     </a>
-                    <a className="me-3" href="/">
+                    <a className="me-3" href="/saved-courses">
                         <FavoriteIcon className={classes.icon} />
                     </a>
                 </nav>

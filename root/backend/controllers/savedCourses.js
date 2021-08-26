@@ -2,9 +2,9 @@ import CourseData from '../models/course.js';
 
 export const getSavedCourses = async (req, res)=> {
     try {
-        const allSavedCourses = await CourseData.find({ isSaved: true });
+        const courses = await CourseData.find({ isSaved: true });
 
-        res.status(200).json(allSavedCourses);
+        res.status(200).json(courses);
     } catch (error) {
         res.status(404).json({ message: error.message});
     }

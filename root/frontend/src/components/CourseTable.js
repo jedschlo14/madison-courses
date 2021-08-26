@@ -66,7 +66,7 @@ const useStyles = makeStyles({
   }
 });
 
-export function CourseTable() {
+export function CourseTable(props) {
   const classes = useStyles();
   const [isLoading, setLoading] = useState(true);
   const [page, setPage] = React.useState(0);
@@ -83,9 +83,10 @@ export function CourseTable() {
 
   const [courseList, setCourseList] = useState([])
 
+  const url = 'http://localhost:5000/' + props.type
   useEffect(() => {
-      axios.get('http://localhost:5000/courses').then( (allCourses) => {
-          setCourseList(allCourses.data);
+      axios.get(url).then( (courses) => {
+          setCourseList(courses.data);
           setLoading(false);
       } )
   }, [])

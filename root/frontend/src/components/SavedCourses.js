@@ -3,12 +3,11 @@ import '../index.css';
 import { CourseTable } from './CourseTable';
 import { Search } from './Search';
 
-export function Homepage() {
+export function SavedCourses() {
     return(
     <div style={{ backgroundColor: "#f7f7f7", height: "100vh"}}>
       <div style={{display: "flex", justifyContent: "center"}}>
-        <Search />
-        <CourseTable type={'courses'}/>
+        <CourseTable type={'saved-courses'}/>
       </div>
     </div>
 )};
