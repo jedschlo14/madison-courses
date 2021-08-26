@@ -1,5 +1,5 @@
-/* eslint-disable no-use-before-define */
 import React, { useEffect, useState } from 'react';
+import ReactLoading from 'react-loading';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -76,7 +76,7 @@ export function Search() {
     console.log(value);
   }
   if (isLoading) {
-    return <div>Loading...</div>
+    return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
   }
 
   return (

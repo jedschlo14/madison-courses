@@ -1,7 +1,6 @@
 import React from 'react';
 import '../index.css';
 import { CourseTable } from './CourseTable';
-import { Search } from './Search';
 
 export function SavedCourses() {
     return(

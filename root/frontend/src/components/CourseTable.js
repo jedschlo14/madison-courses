@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import ReactLoading from 'react-loading';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -83,16 +84,17 @@ export function CourseTable(props) {
 
   const [courseList, setCourseList] = useState([])
 
-  const url = 'http://localhost:5000/' + props.type
+  // const url = 'http://localhost:5000/' + props.type
+  const courseType = props.type;
   useEffect(() => {
-      axios.get(url).then( (courses) => {
+      axios.get('http://localhost:5000/' + courseType).then( (courses) => {
           setCourseList(courses.data);
           setLoading(false);
       } )
   }, [])
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
   }
 
   return (

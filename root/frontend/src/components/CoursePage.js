@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ReactLoading from 'react-loading';
 // import { makeStyles } from '@material-ui/core/styles';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
@@ -39,19 +40,19 @@ export function CoursePage() {
 
   const [isLoading, setLoading] = useState(true);
   const [course, setCourse] = useState()
-  const { courseId } = useParams()
+  // const { courseId } = useParams()
 
-  const url = 'http://localhost:5000/courses/courseId/?courseId=' + courseId;
+  // const url = 'http://localhost:5000/courses/courseId/?courseId=' + courseId;
 
   useEffect(() => {
-    axios.get(url).then( (selectedCourse) => {
+    axios.get('http://localhost:5000/courses/courseId/?courseId=' + useParams).then( (selectedCourse) => {
         setCourse(selectedCourse.data);
         setLoading(false);
     } )
   }, [])
   
   if (isLoading) {
-    return <div>Loading...</div>
+    return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
   } 
 
   return (
