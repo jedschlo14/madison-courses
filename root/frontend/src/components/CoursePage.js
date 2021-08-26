@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import './styles.css';
 import { AddDelete } from './AddDelete';
+import { Paper } from '@material-ui/core';
 
 // const useStyles = makeStyles({
 //   container: {
@@ -40,12 +41,12 @@ export function CoursePage() {
 
   const [isLoading, setLoading] = useState(true);
   const [course, setCourse] = useState()
-  // const { courseId } = useParams()
+  const { courseId } = useParams()
 
-  // const url = 'http://localhost:5000/courses/courseId/?courseId=' + courseId;
+  const url = 'http://localhost:5000/courses/courseId/?courseId=' + courseId;
 
   useEffect(() => {
-    axios.get('http://localhost:5000/courses/courseId/?courseId=' + useParams).then( (selectedCourse) => {
+    axios.get(url).then( (selectedCourse) => {
         setCourse(selectedCourse.data);
         setLoading(false);
     } )
@@ -55,15 +56,38 @@ export function CoursePage() {
     return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
   } 
 
+  const credits = (course) => {
+    if (course.creditMin === course.creditMax) return course.creditMin + ' credits';
+    else return course.creditMin + ' to ' + course.creditMax + ' credits';
+  }
+
+  let items = []
+
+  for (const [index, value] of course.fields.entries()) {
+    items.push(
+      <p style={{ fontWeight: "bold" }} key={index}>{value}</p>
+    )
+    items.push(
+      <pre> | </pre>
+    )
+  }
+
   return (
     <div>
-      <p>{course.fieldDisp}</p>
-      <p>{course.number}</p>
-      <p>{course.name}</p>
-      <p>{course.creditMin}</p>
-      <p>{course.creditMin}</p>
-      <p>{course.description}</p>
-      <AddDelete course={course}/>
+      <Paper elevation={5} className="section" style={{ borderRadius: "20px"}}>
+        <div style={{ padding: "1%" }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+          <p style={{ fontWeight: "bolder", fontSize: "200%" }}>{course.name}</p>
+            <AddDelete course={course}/>
+          </div>
+          <div style={{ display: "flex" }}>
+            {items}
+            <p>{course.number}</p>
+          </div>
+          <p>{credits(course)}</p>
+          <p>{course.description}</p>
+        </div>
+      </Paper>
     </div>
   );
 }

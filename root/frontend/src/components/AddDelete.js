@@ -17,6 +17,7 @@ const changeSaveStatus = (courseId, courseIsSaved) => {
         "bool": !courseIsSaved
     }
     axios.put('http://localhost:5000/saved-courses', params)
+    window.location.reload(false);
 }
 
 export function AddDelete(props) {
@@ -24,10 +25,8 @@ export function AddDelete(props) {
     const [method, changeMethod] = useState(props.course.isSaved);
 
     return (
-        <div>
-            <Button style={{borderRadius: "50%"}} onClick={() => {changeSaveStatus(props.course._id, props.course.isSaved); changeMethod(!props.course.isSaved);}}>
-                {method ?  <DeleteIcon className={classes.icon} /> : <FavoriteIcon className={classes.icon} />}
-            </Button>
-        </div>
+        <Button style={{ borderRadius: "50%", marginLeft: "auto"}} onClick={() => {changeSaveStatus(props.course._id, props.course.isSaved); changeMethod(!props.course.isSaved);}}>
+            {method ?  <DeleteIcon className={classes.icon} /> : <FavoriteIcon className={classes.icon} />}
+        </Button>
     );
 }
