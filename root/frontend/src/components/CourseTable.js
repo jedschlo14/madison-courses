@@ -115,7 +115,7 @@ export function CourseTable() {
           <TableBody className={classes.tableBody}>
             {courseList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={event =>  window.location.href=("courseId=" + row._id)}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={event =>  window.location.href=("courses/" + row._id)}>
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (

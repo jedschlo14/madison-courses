@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import './styles.css';
-
-
-import Button from '@material-ui/core/Button';
+import { AddDelete } from './AddDelete';
 
 // const useStyles = makeStyles({
 //   container: {
@@ -29,53 +27,42 @@ import Button from '@material-ui/core/Button';
 //   tableBody: {
 //     backgroundColor: "#f7f7f7",
 //     color: "#494949",
+//   },
+//   icon: {
+//     color: "#0479a8",
+//     fontSize: "400%"
 //   }
 // });
-
-const changeSaveStatus = (id, trueFalse) => {
-  const params =  {
-    "id": parseInt(id),
-    "bool": trueFalse
-  }
-  axios.put('http://localhost:5000/saved-courses', params)
-}
 
 export function CoursePage() {
   // const classes = useStyles();
 
   const [isLoading, setLoading] = useState(true);
-  const [courseList, setCourseList] = useState([])
-  const { id } = useParams()
+  const [course, setCourse] = useState()
+  const { courseId } = useParams()
+
+  const url = 'http://localhost:5000/courses/courseId/?courseId=' + courseId;
 
   useEffect(() => {
-    axios.get('http://localhost:5000/courses').then( (allCourses) => {
-        setCourseList(allCourses.data);
+    axios.get(url).then( (selectedCourse) => {
+        setCourse(selectedCourse.data);
         setLoading(false);
     } )
   }, [])
-
+  
   if (isLoading) {
     return <div>Loading...</div>
-  }
-    
-  const course = courseList[parseInt(id)]
+  } 
 
   return (
     <div>
-      {console.log(id)}
-      {console.log(courseList[parseInt(id)])}
       <p>{course.fieldDisp}</p>
       <p>{course.number}</p>
       <p>{course.name}</p>
       <p>{course.creditMin}</p>
       <p>{course.creditMin}</p>
-      <p>{course.desc}</p>
-      <Button variant="contained" color="primary" onClick={() => changeSaveStatus(id, true)}>
-        Add
-      </Button>
-      <Button variant="contained" color="secondary" onClick={() => changeSaveStatus(id, false)}>
-        Remove
-      </Button>
+      <p>{course.description}</p>
+      <AddDelete course={course}/>
     </div>
   );
 }

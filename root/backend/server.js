@@ -26,10 +26,10 @@ mongoose.connect(mongoUrl, {dbName: "madison-courses"})
 //  CHECK IF NEEDED
 
 
-mongoose.connection.once("open", function() {
-    console.log("MongoDB connection established");
-  });
+// mongoose.connection.once("open", function() {
+//     console.log("MongoDB connection established");
+//   });
   
-  mongoose.connection.on("error", function(err) {
-    console.log(err)
-  })
+//   mongoose.connection.on("error", function(err) {
+//     console.log(err)
+//   })

@@ -8,7 +8,7 @@ const courseSchema = mongoose.Schema({
     minCredits: Number,
     maxCredits: Number,
     description: String,
-    saved: { type: Boolean, default: false },
+    isSaved: { type: Boolean, default: false },
 });
 
 const course = mongoose.model('courses', courseSchema);
