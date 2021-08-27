@@ -75,9 +75,8 @@ export function Search() {
     event.preventDefault();
     console.log(value);
   }
-  if (isLoading) {
-    return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
-  }
+  
+  if (isLoading) return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
 
   return (
     <Paper elevation={5} className="section" style={{ borderRadius: "25px", background: "#f7f7f7", height: 300, width: 300 }}>

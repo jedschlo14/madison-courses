@@ -93,9 +93,7 @@ export function CourseTable(props) {
       } )
   }, [])
 
-  if (isLoading) {
-    return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
-  }
+  if (isLoading) return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
 
   return (
     <Paper elevation={5} className="section" style={{ borderRadius: "20px"}}>

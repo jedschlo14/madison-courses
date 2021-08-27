@@ -1,43 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
-// import { makeStyles } from '@material-ui/core/styles';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import './styles.css';
 import { AddDelete } from './AddDelete';
 import { Paper } from '@material-ui/core';
-
-// const useStyles = makeStyles({
-//   container: {
-//     maxHeight: 600,
-//   },
-//   head: {
-//     color: "#494949",
-//     backgroundColor: "#dadfe1",
-//     fontWeight: "bolder",
-//     fontSize: "100%",
-//   },
-//   foot: {
-//     color: "#494949",
-//     backgroundColor: "#dadfe1",
-//     borderRadius: '0px 0px 20px 20px',
-//   },
-//   table: {
-//     backgroundColor: "#dadfe1",
-//     borderRadius: '20px',
-//   },
-//   tableBody: {
-//     backgroundColor: "#f7f7f7",
-//     color: "#494949",
-//   },
-//   icon: {
-//     color: "#0479a8",
-//     fontSize: "400%"
-//   }
-// });
+import { Error404 } from './Error404';
 
 export function CoursePage() {
-  // const classes = useStyles();
 
   const [isLoading, setLoading] = useState(true);
   const [course, setCourse] = useState()
@@ -51,10 +21,10 @@ export function CoursePage() {
         setLoading(false);
     } )
   }, [])
+
+  if (JSON.stringify(course) === 'null') return <Error404 />
   
-  if (isLoading) {
-    return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
-  } 
+  if (isLoading) return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
 
   const credits = (course) => {
     if (course.creditMin === course.creditMax) return course.creditMin + ' credits';
