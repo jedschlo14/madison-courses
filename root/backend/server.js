@@ -20,16 +20,3 @@ mongoose.connect(mongoUrl, {dbName: "madison-courses"})
     .then(() => app.listen(PORT, () =>
         console.log(`Connection is established and running on port: ${PORT}`)
         )).catch((err) => console.log(err.message));
-
-
-
-//  CHECK IF NEEDED
-
-
-// mongoose.connection.once("open", function() {
-//     console.log("MongoDB connection established");
-//   });
-  
-//   mongoose.connection.on("error", function(err) {
-//     console.log(err)
-//   })

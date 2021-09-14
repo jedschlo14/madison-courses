@@ -11,20 +11,17 @@ export function CoursePage() {
 
   const [isLoading, setLoading] = useState(true);
   const [course, setCourse] = useState()
-  const { courseId } = useParams()
-
-  const url = 'http://localhost:5000/courses/courseId/?courseId=' + courseId;
+  const params = useParams()
 
   useEffect(() => {
-    axios.get(url).then( (selectedCourse) => {
+    axios.get('http://localhost:5000/courses/courseId/?courseId=' + params.courseId).then( (selectedCourse) => {
         setCourse(selectedCourse.data);
         setLoading(false);
     } )
-  }, [])
+  }, [params])
 
-  if (JSON.stringify(course) === 'null') return <Error404 />
-  
   if (isLoading) return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
+  if (JSON.stringify(course) === 'null') return <Error404 />
 
   const credits = (course) => {
     if (course.creditMin === course.creditMax) return course.creditMin + ' credits';

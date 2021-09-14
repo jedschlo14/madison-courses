@@ -12,12 +12,12 @@ const useStyles = makeStyles({
   });
 
 const changeSaveStatus = (courseId, courseIsSaved) => {
+    window.location.reload(false);
     const params =  {
         "id": parseInt(courseId),
         "bool": !courseIsSaved
     }
     axios.put('http://localhost:5000/saved-courses', params)
-    window.location.reload(false);
 }
 
 export function AddDelete(props) {

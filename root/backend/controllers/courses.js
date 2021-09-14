@@ -19,9 +19,3 @@ export const getSpecificCourse = async(req, res)=> {
         res.status(404).json({ message: error.message});
     }
 }
-
-
-// const keywords = req.body.keywords
-// const field = req.body.field
-// const minCredits = req.body.minCredits
-// const maxCredits = req.body.maxCredits

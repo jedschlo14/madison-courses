@@ -25,7 +25,7 @@ const columns = [
   {
     id: 'name',
     label: 'Name',
-    minWidth: 300,
+    minWidth: 600,
     borderRadius: "0px 0px 0px 0px",
   },
   {
@@ -84,14 +84,12 @@ export function CourseTable(props) {
 
   const [courseList, setCourseList] = useState([])
 
-  // const url = 'http://localhost:5000/' + props.type
-  const courseType = props.type;
   useEffect(() => {
-      axios.get('http://localhost:5000/' + courseType).then( (courses) => {
+      axios.get('http://localhost:5000/' + props.type).then( (courses) => {
           setCourseList(courses.data);
           setLoading(false);
       } )
-  }, [])
+  }, [props.type])
 
   if (isLoading) return <ReactLoading type={'spin'} color={"#494949"} height={75} width={75} />
 
