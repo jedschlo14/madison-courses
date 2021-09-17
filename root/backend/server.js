@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import courseRoutes from './routes/courses.js';
 import savedCourseRoutes from './routes/savedCourses.js';
-import fieldRoutes from './routes/fields.js';
 
 const app = express();
 
@@ -11,7 +10,6 @@ app.use(express.json());
 app.use(cors());
 app.use('/courses', courseRoutes);
 app.use('/saved-courses', savedCourseRoutes);
-app.use('/fields', fieldRoutes);
 
 const PORT = process.env.PORT || 5000;
 
